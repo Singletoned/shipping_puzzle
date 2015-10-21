@@ -124,3 +124,10 @@ class Map(object):
             if path.days <= max_days:
                 paths.append(path)
         return paths
+
+    def find_exact_path(self, *args):
+        routes = list(args)
+        for path in self.yield_all_paths(routes[0], routes[-1]):
+            # print path, path.routes, routes
+            if path.ports == routes:
+                return path
