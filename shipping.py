@@ -14,6 +14,8 @@ class Port(object):
         self.key = key
         self.routes = set()
 
+    def __repr__(self):
+        return "<Port %s>" % self.name
 
 @functools.total_ordering
 class Route(object):
