@@ -9,3 +9,9 @@ class Route(object):
 
     def __repr__(self):
         return "<Route %s-%s>" % (self.start.name, self.end.name)
+
+
+class Map(object):
+    def __init__(self):
+        self.ports = set()
+        self.routes = set()

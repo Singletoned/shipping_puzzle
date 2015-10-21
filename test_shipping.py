@@ -13,6 +13,12 @@ class TestRoute(unittest.TestCase):
         self.assertEqual(r.days, 5)
 
 
+class TestMap(unittest.TestCase):
+    def test_init(self):
+        m = shipping.Map()
+        self.assertEqual(m.ports, set())
+        self.assertEqual(m.routes, set())
+
 
 if __name__ == '__main__':
     unittest.main()
