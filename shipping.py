@@ -19,6 +19,12 @@ class Route(object):
         return "<Route %s-%s>" % (self.start.name, self.end.name)
 
 
+class Path(object):
+    def __init__(self):
+        self.routes = []
+        self.days = 0
+
+
 class Map(object):
     def __init__(self):
         self.ports = set()

@@ -23,6 +23,13 @@ class TestRoute(unittest.TestCase):
         self.assertIn(r, p.routes)
 
 
+class TestPath(unittest.TestCase):
+    def test_init(self):
+        path = shipping.Path()
+        self.assertEqual(path.routes, [])
+        self.assertEqual(path.days, 0)
+
+
 class TestMap(unittest.TestCase):
     def test_init(self):
         m = shipping.Map()
