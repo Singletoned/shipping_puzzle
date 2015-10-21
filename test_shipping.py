@@ -19,6 +19,13 @@ class TestMap(unittest.TestCase):
         self.assertEqual(m.ports, set())
         self.assertEqual(m.routes, set())
 
+    def test_add_route(self):
+        m = shipping.Map()
+        r = shipping.Route("foo", "bar", 5)
+        m.add_route(r)
+        self.assertEqual(m.routes, set([r]))
+        self.assertEqual(m.ports, set(["foo", "bar"]))
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -15,3 +15,8 @@ class Map(object):
     def __init__(self):
         self.ports = set()
         self.routes = set()
+
+    def add_route(self, route):
+        self.routes.add(route)
+        self.ports.add(route.start)
+        self.ports.add(route.end)
