@@ -12,6 +12,11 @@ def shortest_routes():
     print data.shipping_map.find_path(
         data.NEW_YORK, data.NEW_YORK)
 
+def number_of_routes():
+    print "Number of routes from Liverpool-Liverpool"
+    print data.shipping_map.find_paths_max_stops(
+        data.LIVERPOOL, data.LIVERPOOL, 4)
 
 if __name__ == '__main__':
     shortest_routes()
+    number_of_routes()

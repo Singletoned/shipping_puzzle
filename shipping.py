@@ -94,12 +94,19 @@ class Map(object):
             shortest = heapq.heappop(paths)
             if shortest.end == end:
                 yield shortest
-            else:
-                for route in sorted(shortest.end.routes):
-                    if route not in shortest.routes:
-                        new_path = Path.from_path(shortest)
-                        new_path.add_route(route)
-                        heapq.heappush(paths, new_path)
+            for route in sorted(shortest.end.routes):
+                if route not in shortest.routes:
+                    new_path = Path.from_path(shortest)
+                    new_path.add_route(route)
+                    heapq.heappush(paths, new_path)
 
     def find_path(self, start, end):
         return next(self.yield_all_paths(start, end))
+
+    def find_paths_max_stops(self, start, end, max_stops):
+        paths = []
+        for path in self.yield_all_paths(start, end):
+            if len(path.ports) < max_stops+2:
+                paths.append(path)
+            else:
+                return paths
