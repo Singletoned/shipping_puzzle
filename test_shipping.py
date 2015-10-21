@@ -81,6 +81,22 @@ class TestMap(unittest.TestCase):
         self.assertEqual(m.routes, set([r]))
         self.assertEqual(m.ports, set([p, "bar"]))
 
+    def test_find_path(self):
+        p0 = shipping.Port("Zero", "Z")
+        p1 = shipping.Port("One", "O")
+        p2 = shipping.Port("Two", "T")
+        p3 = shipping.Port("Three", "Th")
+        r0 = shipping.Route(p0, p1, 5)
+        r1 = shipping.Route(p1, p2, 3)
+        r2 = shipping.Route(p2, p3, 4)
+        m = shipping.Map()
+        for route in [r0, r1, r2]:
+            m.add_route(route)
+        result = m.find_path(p0, p2)
+        expected = shipping.Path(r0, r1)
+        self.assertEqual(result, expected)
+        self.assertEqual(result.routes, expected.routes)
+
 
 if __name__ == '__main__':
     unittest.main()
