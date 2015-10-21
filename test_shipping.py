@@ -51,6 +51,21 @@ class TestPath(unittest.TestCase):
             path.add_route,
             r1)
 
+    def test_ordering(self):
+        p0 = shipping.Port("Zero", "Z")
+        p1 = shipping.Port("One", "O")
+        p2 = shipping.Port("Two", "T")
+        p3 = shipping.Port("Three", "Th")
+        r0 = shipping.Route(p0, p1, 5)
+        r1 = shipping.Route(p2, p3, 3)
+        path_1 = shipping.Path()
+        path_2 = shipping.Path()
+        path_1.add_route(r0)
+        path_2.add_route(r1)
+        self.assertNotEqual(path_1, path_2)
+        self.assertTrue(path_1>path_2)
+        self.assertTrue(path_2<path_1)
+
 
 class TestMap(unittest.TestCase):
     def test_init(self):

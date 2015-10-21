@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import functools
+
 
 class InvalidRoute(Exception):
     pass
@@ -23,10 +25,17 @@ class Route(object):
         return "<Route %s-%s>" % (self.start.name, self.end.name)
 
 
+@functools.total_ordering
 class Path(object):
     def __init__(self):
         self.routes = []
         self.days = 0
+
+    def __eq__(self, other):
+        return self.days == other.days
+
+    def __lt__(self, other):
+        return self.days < other.days
 
     def add_route(self, route):
         if self.routes:
