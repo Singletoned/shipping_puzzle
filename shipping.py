@@ -13,6 +13,7 @@ class Route(object):
         self.start = start
         self.end = end
         self.days = days
+        self.start.routes.add(self)
 
     def __repr__(self):
         return "<Route %s-%s>" % (self.start.name, self.end.name)
