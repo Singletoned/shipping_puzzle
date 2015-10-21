@@ -16,6 +16,7 @@ def number_of_routes():
     print "Number of routes from Liverpool-Liverpool with 3 stops or less"
     print data.shipping_map.find_paths_max_stops(
         data.LIVERPOOL, data.LIVERPOOL, 4)
+
     print "Number of routes from Buenos Aires-Liverpool with exactly 4 stops"
     print data.shipping_map.find_paths_exact_stops(
         data.BUENOS_AIRES, data.LIVERPOOL, 4)
