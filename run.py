@@ -20,6 +20,10 @@ def number_of_routes():
     print data.shipping_map.find_paths_exact_stops(
         data.BUENOS_AIRES, data.LIVERPOOL, 4)
 
+    print "Number of routes from Liverpool-Liverpool with less than 26 days"
+    print data.shipping_map.find_paths_days_less_than(
+        data.LIVERPOOL, data.LIVERPOOL, 26)
+
 
 if __name__ == '__main__':
     shortest_routes()

@@ -117,3 +117,10 @@ class Map(object):
             if len(path.ports) == num_stops+2:
                 paths.append(path)
         return paths
+
+    def find_paths_days_less_than(self, start, end, max_days):
+        paths = []
+        for path in self.yield_all_paths(start, end):
+            if path.days <= max_days:
+                paths.append(path)
+        return paths
