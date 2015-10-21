@@ -37,6 +37,20 @@ class TestPath(unittest.TestCase):
         self.assertEqual(path.routes, [r])
         self.assertEqual(path.days, 5)
 
+    def test_add_route_invalid(self):
+        path = shipping.Path()
+        p0 = shipping.Port("Zero", "Z")
+        p1 = shipping.Port("One", "O")
+        p2 = shipping.Port("Two", "T")
+        p3 = shipping.Port("Three", "Th")
+        r0 = shipping.Route(p0, p1, 5)
+        r1 = shipping.Route(p2, p3, 3)
+        path.add_route(r0)
+        self.assertRaises(
+            shipping.InvalidRoute,
+            path.add_route,
+            r1)
+
 
 class TestMap(unittest.TestCase):
     def test_init(self):

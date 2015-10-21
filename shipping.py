@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 
 
+class InvalidRoute(Exception):
+    pass
+
+
 class Port(object):
     def __init__(self, name, key):
         self.name = name
@@ -25,6 +29,10 @@ class Path(object):
         self.days = 0
 
     def add_route(self, route):
+        if self.routes:
+            last_route = self.routes[-1]
+            if not route.start == last_route:
+                raise InvalidRoute()
         self.routes.append(route)
         self.days = self.days + route.days
 
