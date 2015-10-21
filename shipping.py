@@ -92,6 +92,9 @@ class Map(object):
         self.ports.add(route.end)
 
     def find_path(self, start, end):
+        return next(self.yield_all_paths(start, end))
+
+    def yield_all_paths(self, start, end):
         starting_points = [
             r for r in self.routes if r.start == start]
         paths = [Path(r) for r in starting_points]
@@ -99,7 +102,7 @@ class Map(object):
         while paths:
             shortest = heapq.heappop(paths)
             if shortest.end == end:
-                return shortest
+                yield shortest
             else:
                 for route in sorted(shortest.end.routes):
                     if route not in shortest.routes:
