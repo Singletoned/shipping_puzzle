@@ -17,7 +17,7 @@ class Port(object):
     def __repr__(self):
         return "<Port %s>" % self.name
 
-@functools.total_ordering
+
 class Route(object):
     def __init__(self, start, end, days):
         self.start = start
@@ -27,12 +27,6 @@ class Route(object):
 
     def __repr__(self):
         return "<Route %s-%s>" % (self.start.name, self.end.name)
-
-    def __eq__(self, other):
-        return self.days == other.days
-
-    def __lt__(self, other):
-        return self.days < other.days
 
 
 @functools.total_ordering
