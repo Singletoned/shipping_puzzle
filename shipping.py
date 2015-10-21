@@ -45,7 +45,7 @@ class Path(object):
 
     @property
     def ports(self):
-        stops = [r.start for r in self.routes[:-1]]
+        stops = [r.start for r in self.routes]
         stops.append(self.end)
         return stops
 
