@@ -55,6 +55,9 @@ class Path(object):
     def __lt__(self, other):
         return self.days < other.days
 
+    def __repr__(self):
+        return "<Path %s>" % ("-".join([p.key for p in self.ports]))
+
     @property
     def start(self):
         return self.routes[0].start
