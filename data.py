@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from shipping import Port, Route
+from shipping import Port, Route, Map
 
 
 LIVERPOOL = Port("Liverpool", "L")
@@ -22,3 +22,7 @@ C_CT = Route(CASABLANCA, CAPE_TOWN, 6)
 CT_NY = Route(CAPE_TOWN, NEW_YORK, 8)
 
 routes = [BA_NY, BA_C, BA_CT, NY_L, L_C, L_CT, C_L, C_CT, CT_NY]
+
+shipping_map = Map()
+for route in routes:
+    shipping_map.add_route(route)
