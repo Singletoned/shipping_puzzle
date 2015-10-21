@@ -24,6 +24,10 @@ class Path(object):
         self.routes = []
         self.days = 0
 
+    def add_route(self, route):
+        self.routes.append(route)
+        self.days = self.days + route.days
+
 
 class Map(object):
     def __init__(self):
