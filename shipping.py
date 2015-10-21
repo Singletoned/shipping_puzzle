@@ -69,7 +69,7 @@ class Path(object):
     @classmethod
     def from_path(cls, path):
         new_path = cls()
-        new_path.routes = path.routes
+        new_path.routes = list(path.routes)
         new_path.days = path.days
         return new_path
 
@@ -101,9 +101,8 @@ class Map(object):
             if shortest.end == end:
                 return shortest
             else:
-                for route in shortest.end.routes:
-                    if route in shortest.routes:
-                        continue
-                    new_path = Path.from_path(shortest)
-                    new_path.add_route(route)
-                    heapq.heappush(paths, new_path)
+                for route in sorted(shortest.end.routes):
+                    if route not in shortest.routes:
+                        new_path = Path.from_path(shortest)
+                        new_path.add_route(route)
+                        heapq.heappush(paths, new_path)
