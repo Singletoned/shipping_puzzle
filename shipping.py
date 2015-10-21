@@ -43,6 +43,12 @@ class Path(object):
         for route in args:
             self.add_route(route)
 
+    @property
+    def ports(self):
+        stops = [r.start for r in self.routes[:-1]]
+        stops.append(self.end)
+        return stops
+
     def __eq__(self, other):
         return self.days == other.days
 
