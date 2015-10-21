@@ -5,6 +5,14 @@ import unittest
 import shipping
 
 
+class Port(unittest.TestCase):
+    def test_init(self):
+        p = shipping.Port("Flibble", "F")
+        self.assertEqual(p.name, "Flibble")
+        self.assertEqual(p.key, "F")
+        self.assertEqual(p.routes, set())
+
+
 class TestRoute(unittest.TestCase):
     def test_init(self):
         r = shipping.Route("foo", "bar", 5)

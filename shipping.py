@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
 
 
+class Port(object):
+    def __init__(self, name, key):
+        self.name = name
+        self.key = key
+        self.routes = set()
+
+
 class Route(object):
     def __init__(self, start, end, days):
         self.start = start
