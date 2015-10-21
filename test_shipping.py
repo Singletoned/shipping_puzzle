@@ -4,6 +4,11 @@ import unittest
 
 import shipping
 
+p0 = shipping.Port("Zero", "Z")
+p1 = shipping.Port("One", "O")
+p2 = shipping.Port("Two", "T")
+p3 = shipping.Port("Three", "Th")
+
 
 class Port(unittest.TestCase):
     def test_init(self):
@@ -23,10 +28,6 @@ class TestRoute(unittest.TestCase):
         self.assertIn(r, p.routes)
 
     def test_ordering(self):
-        p0 = shipping.Port("Zero", "Z")
-        p1 = shipping.Port("One", "O")
-        p2 = shipping.Port("Two", "T")
-        p3 = shipping.Port("Three", "Th")
         r0 = shipping.Route(p0, p1, 5)
         r1 = shipping.Route(p2, p3, 3)
         self.assertNotEqual(r0, r1)
@@ -49,10 +50,6 @@ class TestPath(unittest.TestCase):
 
     def test_add_route_invalid(self):
         path = shipping.Path()
-        p0 = shipping.Port("Zero", "Z")
-        p1 = shipping.Port("One", "O")
-        p2 = shipping.Port("Two", "T")
-        p3 = shipping.Port("Three", "Th")
         r0 = shipping.Route(p0, p1, 5)
         r1 = shipping.Route(p2, p3, 3)
         path.add_route(r0)
@@ -63,10 +60,6 @@ class TestPath(unittest.TestCase):
 
     def test_ports(self):
         path = shipping.Path()
-        p0 = shipping.Port("Zero", "Z")
-        p1 = shipping.Port("One", "O")
-        p2 = shipping.Port("Two", "T")
-        p3 = shipping.Port("Three", "Th")
         r0 = shipping.Route(p0, p1, 5)
         r1 = shipping.Route(p1, p2, 3)
         path.add_route(r0)
@@ -74,10 +67,6 @@ class TestPath(unittest.TestCase):
         self.assertEqual(path.ports, [p0, p1, p2])
 
     def test_ordering(self):
-        p0 = shipping.Port("Zero", "Z")
-        p1 = shipping.Port("One", "O")
-        p2 = shipping.Port("Two", "T")
-        p3 = shipping.Port("Three", "Th")
         r0 = shipping.Route(p0, p1, 5)
         r1 = shipping.Route(p2, p3, 3)
         path_1 = shipping.Path()
@@ -104,10 +93,6 @@ class TestMap(unittest.TestCase):
         self.assertEqual(m.ports, set([p, "bar"]))
 
     def test_find_path(self):
-        p0 = shipping.Port("Zero", "Z")
-        p1 = shipping.Port("One", "O")
-        p2 = shipping.Port("Two", "T")
-        p3 = shipping.Port("Three", "Th")
         r0 = shipping.Route(p0, p1, 5)
         r1 = shipping.Route(p1, p2, 3)
         r2 = shipping.Route(p2, p3, 4)
