@@ -110,3 +110,10 @@ class Map(object):
                 paths.append(path)
             else:
                 return paths
+
+    def find_paths_exact_stops(self, start, end, num_stops):
+        paths = []
+        for path in self.yield_all_paths(start, end):
+            if len(path.ports) == num_stops+2:
+                paths.append(path)
+        return paths
