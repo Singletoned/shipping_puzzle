@@ -27,12 +27,6 @@ class TestRoute(unittest.TestCase):
         self.assertEqual(r.days, 5)
         self.assertIn(r, p.routes)
 
-    def test_ordering(self):
-        r0 = shipping.Route(p0, p1, 5)
-        r1 = shipping.Route(p2, p3, 3)
-        self.assertNotEqual(r0, r1)
-        self.assertTrue(r0>r1)
-        self.assertTrue(r1<r0)
 
 class TestPath(unittest.TestCase):
     def test_init(self):
