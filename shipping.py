@@ -108,7 +108,7 @@ class Map(object):
     def find_paths_max_stops(self, start, end, max_stops):
         paths = []
         for path in self.yield_all_paths(start, end, key=lambda x: len(x.ports)):
-            if len(path.ports) < max_stops+2:
+            if len(path.ports) <= max_stops+2:
                 paths.append(path)
             else:
                 return paths
