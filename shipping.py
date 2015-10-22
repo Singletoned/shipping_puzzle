@@ -98,8 +98,9 @@ class Map(object):
                 if route not in shortest.routes:
                     new_path = Path.from_path(shortest)
                     new_path.add_route(route)
-                    if (key(new_path), new_path) not in paths:
-                        heapq.heappush(paths, (key(new_path), new_path))
+                    list_item = (key(new_path), new_path)
+                    if list_item not in paths:
+                        heapq.heappush(paths, list_item)
 
     def find_path(self, start, end):
         return next(self.yield_all_paths(start, end))
