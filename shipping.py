@@ -29,7 +29,6 @@ class Route(object):
         return "<Route %s-%s>" % (self.start.name, self.end.name)
 
 
-@functools.total_ordering
 class Path(object):
     def __init__(self, *args):
         self.routes = []
@@ -44,10 +43,7 @@ class Path(object):
         return stops
 
     def __eq__(self, other):
-        return self.days == other.days
-
-    def __lt__(self, other):
-        return self.days < other.days
+        return self.ports == other.ports
 
     def __repr__(self):
         return "<Path %s>" % ("-".join([p.key for p in self.ports]))
@@ -85,20 +81,22 @@ class Map(object):
         self.ports.add(route.start)
         self.ports.add(route.end)
 
-    def yield_all_paths(self, start, end):
+    def yield_all_paths(self, start, end, key=lambda x: x.days):
         starting_points = [
             r for r in self.routes if r.start == start]
         paths = [Path(r) for r in starting_points]
+        paths = [(key(p), p) for p in paths]
         heapq.heapify(paths)
         while paths:
-            shortest = heapq.heappop(paths)
+            _, shortest = heapq.heappop(paths)
             if shortest.end == end:
                 yield shortest
             for route in sorted(shortest.end.routes):
                 if route not in shortest.routes:
                     new_path = Path.from_path(shortest)
                     new_path.add_route(route)
-                    heapq.heappush(paths, new_path)
+                    if (key(new_path), new_path) not in paths:
+                        heapq.heappush(paths, (key(new_path), new_path))
 
     def find_path(self, start, end):
         return next(self.yield_all_paths(start, end))

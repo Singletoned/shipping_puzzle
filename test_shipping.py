@@ -60,17 +60,6 @@ class TestPath(unittest.TestCase):
         path.add_route(r1)
         self.assertEqual(path.ports, [p0, p1, p2])
 
-    def test_ordering(self):
-        r0 = shipping.Route(p0, p1, 5)
-        r1 = shipping.Route(p2, p3, 3)
-        path_1 = shipping.Path()
-        path_2 = shipping.Path()
-        path_1.add_route(r0)
-        path_2.add_route(r1)
-        self.assertNotEqual(path_1, path_2)
-        self.assertTrue(path_1>path_2)
-        self.assertTrue(path_2<path_1)
-
 
 class TestMap(unittest.TestCase):
     def test_init(self):
@@ -106,8 +95,11 @@ class TestMap(unittest.TestCase):
         m = shipping.Map()
         for route in [r0, r1, r2, r4]:
             m.add_route(route)
-        path = next(m.yield_all_paths(p0, p3))
-        self.assertEqual(path.days, 12)
+        paths = m.yield_all_paths(p0, p3)
+        path_1 = next(paths)
+        self.assertEqual(path_1.days, 12)
+        path_2 = next(paths)
+        self.assertEqual(path_2.days, 105)
 
 
 if __name__ == '__main__':
