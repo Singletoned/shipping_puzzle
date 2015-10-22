@@ -20,6 +20,7 @@ class Port(object):
 
 class Route(object):
     def __init__(self, start, end, days):
+        """Creates a new route. Registers self with start port"""
         self.start = start
         self.end = end
         self.days = days
