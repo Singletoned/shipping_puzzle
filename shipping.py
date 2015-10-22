@@ -82,6 +82,7 @@ class Map(object):
         self.ports.add(route.end)
 
     def yield_all_paths(self, start, end, key=lambda x: x.days):
+        """Lazily generate all paths.  Calculate shortest based on key"""
         starting_points = [
             r for r in self.routes if r.start == start]
         paths = [Path(r) for r in starting_points]
