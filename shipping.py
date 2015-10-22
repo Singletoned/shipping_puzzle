@@ -32,6 +32,7 @@ class Route(object):
 
 class Path(object):
     def __init__(self, *args):
+        "Create a new path.  Takes a list of routes to initialise with"
         self.routes = []
         self.days = 0
         for route in args:
