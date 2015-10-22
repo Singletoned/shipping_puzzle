@@ -98,6 +98,17 @@ class TestMap(unittest.TestCase):
         self.assertEqual(result, expected)
         self.assertEqual(result.routes, expected.routes)
 
+    def test_yield_all_paths(self):
+        r0 = shipping.Route(p0, p1, 5)
+        r1 = shipping.Route(p1, p2, 3)
+        r2 = shipping.Route(p2, p3, 4)
+        r4 = shipping.Route(p1, p3, 100)
+        m = shipping.Map()
+        for route in [r0, r1, r2, r4]:
+            m.add_route(route)
+        path = next(m.yield_all_paths(p0, p3))
+        self.assertEqual(path.days, 12)
+
 
 if __name__ == '__main__':
     unittest.main()
